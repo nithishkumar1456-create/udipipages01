@@ -2,7 +2,10 @@
 
 Production-ready marketing and registration full-stack web application for **Udupipages Beach Run 2026** held on **6th December 2026** in Udupi, India (Padukere Ground ➔ Kaup Beach).
 
+> 📘 **Master Deployment & Future Reference Docs**: See [PROJECT_DOCUMENTATION.md](file:///c:/Users/mrcyb/OneDrive/Desktop/project/runner/PROJECT_DOCUMENTATION.md) for live production URLs, Vercel & Render configurations, environment variables, database schema, and deployment architecture details.
+
 ---
+
 
 ## 🏗️ Repository Architecture
 
@@ -128,39 +131,25 @@ CREATE TABLE public.registrations (
 
 ---
 
-## 🚀 Deploying to GitHub Pages
+## 🚀 Deployment Guide
 
-### Method 1: Automatic Deployment via GitHub Actions (Recommended)
+### Backend: Deployed to Vercel
+- Entry Point: `server/api/index.ts`
+- Configuration: `server/vercel.json`
+- Live URL: `https://udipipages01.vercel.app`
+- Environment Variables in Vercel Dashboard:
+  - `PORT`: `5000`
+  - `CLIENT_URL`: `https://udupipages-beach-run-frontend.onrender.com`
+  - `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `RAZORPAY_WEBHOOK_SECRET`
+  - `SUPABASE_URL`, `SUPABASE_ANON_KEY`
 
-1. **Enable GitHub Actions Pages Source:**
-   - Push your code to GitHub.
-   - Go to your repository on GitHub -> **Settings** -> **Pages**.
-   - Under **Build and deployment** -> **Source**, select **GitHub Actions**.
+### Frontend: Deployed to Render (Static Site)
+- Root Directory: `client`
+- Build Command: `npm run build` (or `npm install && npm run build`)
+- Publish Directory: `dist`
+- Redirect / Rewrite Rule: `/*` -> `/index.html` (Action: `Rewrite`)
+- Environment Variables in Render Dashboard:
+  - `VITE_API_BASE_URL`: `https://udipipages01.vercel.app/api`
+  - `VITE_RAZORPAY_KEY_ID`: `rzp_test_...` (or `rzp_live_...`)
 
-2. **Configure Environment Secrets (Optional but Recommended):**
-   - Go to **Settings** -> **Secrets and variables** -> **Actions**.
-   - Add the following Repository secrets:
-     - `VITE_API_BASE_URL`: Production URL of your Node/Express backend (e.g. `https://your-app.onrender.com/api`).
-     - `VITE_RAZORPAY_KEY_ID`: Your Razorpay key ID (`rzp_live_...` or `rzp_test_...`).
-
-3. **Deploy:**
-   - Every push to `main` or `master` will trigger `.github/workflows/deploy.yml`.
-   - You can also manually trigger a deployment under the **Actions** tab by selecting **Deploy Frontend to GitHub Pages** -> **Run workflow**.
-
----
-
-### Method 2: Manual CLI Deployment
-
-You can also deploy manually from your terminal:
-
-```bash
-# Option A: From root directory
-npm run deploy
-
-# Option B: From client directory
-cd client
-npm run deploy
-```
-
-> 📌 **Note:** GitHub Pages hosts the static React frontend (`client`). Your Express backend (`server`) must be hosted separately (e.g., on Render or Vercel).
 
