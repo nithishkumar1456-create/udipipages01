@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Eye, X } from 'lucide-react';
+import { Camera, Eye, X, Glasses, ArrowRight } from 'lucide-react';
 
-export const Gallery: React.FC = () => {
+interface GalleryProps {
+  onNavigateToGallery?: () => void;
+}
+
+export const Gallery: React.FC<GalleryProps> = ({ onNavigateToGallery }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<null | typeof photos[0]>(null);
 
   const photos = [
@@ -51,18 +55,18 @@ export const Gallery: React.FC = () => {
   ];
 
   return (
-    <section id="gallery" className="py-24 sm:py-32 bg-white border-t border-gray-200">
+    <section id="gallery" className="py-20 sm:py-28 bg-slate-50 text-[#0A0A0A] border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-xs font-semibold tracking-widest text-[#00A3FF] uppercase">
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <span className="text-xs font-semibold tracking-widest text-[#00A3FF] uppercase block">
             VISUAL DOCUMENTARY
           </span>
           <h2 className="font-thunder text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0A0A0A] uppercase">
             COASTAL RUNNING <span className="text-gradient font-thunder">GALLERY</span>
           </h2>
-          <p className="text-base sm:text-lg text-gray-700 font-normal">
+          <p className="text-sm sm:text-base text-slate-700 font-normal">
             Moody, documentary trail-running imagery capturing the raw spirit of Udupi’s coast.
           </p>
         </div>
@@ -77,7 +81,7 @@ export const Gallery: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative cursor-pointer overflow-hidden bg-gray-900 border border-gray-200 hover:border-[#00A3FF] shadow-sm hover:shadow-md transition-all aspect-[4/3]"
+              className="group relative cursor-pointer overflow-hidden bg-slate-900 border border-slate-200 hover:border-[#00A3FF] shadow-sm hover:shadow-md transition-all aspect-[4/3]"
             >
               {/* Real Photography Asset */}
               <img
@@ -118,6 +122,20 @@ export const Gallery: React.FC = () => {
           ))}
         </div>
 
+        {/* Explore Full Photo Gallery Button */}
+        {onNavigateToGallery && (
+          <div className="mt-12 text-center">
+            <button
+              onClick={onNavigateToGallery}
+              className="group relative inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#00A3FF] via-[#0066FF] to-[#00A3FF] text-white font-sans text-sm sm:text-base font-extrabold uppercase tracking-widest shadow-lg hover:scale-105 transition-all space-x-3 border border-white/20"
+            >
+              <Camera className="w-5 h-5" />
+              <span>EXPLORE FULL PHOTO & MEDIA GALLERY</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        )}
+
       </div>
 
       {/* Photo Lightbox Popup */}
@@ -128,7 +146,7 @@ export const Gallery: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="relative max-w-4xl w-full bg-black border border-gray-800 overflow-hidden shadow-2xl"
+              className="relative max-w-4xl w-full bg-black border border-slate-800 overflow-hidden shadow-2xl"
             >
               <button
                 onClick={() => setSelectedPhoto(null)}
@@ -138,7 +156,7 @@ export const Gallery: React.FC = () => {
                 <X className="w-6 h-6" />
               </button>
 
-              <div className="relative max-h-[75vh] w-full overflow-hidden bg-gray-950 flex items-center justify-center">
+              <div className="relative max-h-[75vh] w-full overflow-hidden bg-black flex items-center justify-center">
                 <img
                   src={selectedPhoto.src}
                   alt={selectedPhoto.title}
@@ -146,7 +164,7 @@ export const Gallery: React.FC = () => {
                 />
               </div>
 
-              <div className="p-6 bg-zinc-900 text-white space-y-2 border-t border-gray-800">
+              <div className="p-6 bg-slate-900 text-white space-y-2 border-t border-slate-800">
                 <span className="text-xs font-mono text-[#00A3FF] uppercase font-bold tracking-widest">
                   {selectedPhoto.category}
                 </span>

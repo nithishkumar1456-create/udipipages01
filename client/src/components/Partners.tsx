@@ -12,10 +12,10 @@ export const Partners: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-white border-t border-gray-200 overflow-hidden">
+    <section className="py-16 bg-white border-t border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <span className="text-xs font-mono text-gray-500 uppercase tracking-widest font-bold">
+        <div className="text-center mb-8 space-y-2">
+          <span className="text-xs font-mono text-[#00A3FF] uppercase tracking-widest font-bold block">
             COMMUNITY & ENVIRONMENTAL PARTNERS
           </span>
         </div>
@@ -26,10 +26,10 @@ export const Partners: React.FC = () => {
             return (
               <div
                 key={index}
-                className="bg-zinc-50 border border-gray-200 p-4 flex flex-col items-center justify-center space-y-2 hover:border-[#00A3FF] shadow-sm transition-colors group cursor-default"
+                className="bg-slate-50 border border-slate-200 p-4 flex flex-col items-center justify-center space-y-2 hover:border-[#00A3FF] shadow-xs hover:shadow-md transition-all group cursor-default"
               >
-                <Icon className="w-6 h-6 text-gray-500 group-hover:text-[#00A3FF] transition-colors" />
-                <span className="text-xs font-bold text-gray-700 group-hover:text-[#0A0A0A] uppercase tracking-wider text-center">
+                <Icon className="w-6 h-6 text-slate-500 group-hover:text-[#00A3FF] transition-colors" />
+                <span className="text-xs font-bold text-slate-800 group-hover:text-[#00A3FF] uppercase tracking-wider text-center">
                   {partner.name}
                 </span>
               </div>

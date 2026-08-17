@@ -6,60 +6,60 @@ export const Objectives: React.FC = () => {
   const objectives = [
     {
       num: '01',
-      title: 'EDUCATE & RAISE AWARENESS',
-      subtitle: 'Spotlight Beach, River & Sea Pollution',
-      desc: 'Drive impactful awareness on marine waste, river estuary contamination, and plastic pollution impacting Udupi’s coastal ecosystems.',
+      title: 'Educate and Raise Awareness',
+      subtitle: 'Public & Spectator Education',
+      desc: 'To inform the public, participants, and spectators about the importance of keeping beaches, rivers, and the sea clean. This includes educating them on the harmful effects of plastic pollution, improper waste disposal, and the degradation of natural habitats on marine life and human health.',
       icon: BookOpen,
       color: '#00A3FF',
     },
     {
       num: '02',
-      title: 'PROMOTE RESPONSIBLE TOURISM',
-      subtitle: 'Leave No Trace Principle',
-      desc: 'Inspire visitors and local communities to adopt eco-conscious habits, plastic-free travel, and zero-waste beach culture.',
+      title: 'Promote Responsible Tourism',
+      subtitle: 'Leave No Trace Philosophy',
+      desc: 'To encourage both locals and tourists to adopt eco-friendly habits and practice responsible tourism. The event would promote a "leave no trace" philosophy, emphasizing that the natural beauty of Udupi is a shared resource that must be preserved.',
       icon: Compass,
       color: '#0066FF',
     },
     {
       num: '03',
-      title: 'FUNDRAISING FOR CONSERVATION',
-      subtitle: 'Direct Environmental Action',
-      desc: 'Raise dedicated funds for regular beach cleanups, river waste filtration barriers, waste management systems, and habitat restoration.',
+      title: 'Fundraising for Conservation Efforts',
+      subtitle: 'Direct Coastal & River Funding',
+      desc: 'To generate funds for local organizations and initiatives dedicated to coastal and river conservation. This could include financing beach clean-up drives, filter river waste to sea, setting up proper waste management systems, or supporting programs for the restoration of natural ecosystems.',
       icon: Coins,
       color: '#00A3FF',
     },
     {
       num: '04',
-      title: 'FOSTER COMMUNITY ENGAGEMENT',
-      subtitle: 'Unified Coastal Movement',
-      desc: 'Unite government bodies, educational institutions, local fishermen, businesses, and passionate volunteers under one cause.',
+      title: 'Foster Community Engagement',
+      subtitle: 'Sustainable Community Movement',
+      desc: 'To unite the local community, including government bodies, schools, businesses, and volunteers, under a common cause. This collective participation strengthens local bonds and ensures that the conservation message extends beyond the event itself, creating a sustainable movement.',
       icon: Users,
       color: '#0066FF',
     },
     {
       num: '05',
-      title: 'SHOWCASE UDUPI’S NATURAL BEAUTY',
-      subtitle: 'The Route as a Moving Canvas',
-      desc: 'Celebrate Udupi’s golden sand dunes, palm-fringed estuaries, and iconic Kaup Lighthouse as a world-class eco-marathon destination.',
+      title: "Showcase Udupi's Natural Beauty",
+      subtitle: 'The Marathon Route as a Moving Canvas',
+      desc: 'To highlight the stunning coastline and serene environment of Udupi, reminding people of what is at stake and inspiring a deeper appreciation for nature. The marathon route itself would serve as a moving canvas, showcasing the beauty of the area that needs to be protected.',
       icon: Eye,
       color: '#00A3FF',
     },
   ];
 
   return (
-    <section id="objectives" className="py-24 sm:py-32 bg-white relative overflow-hidden">
+    <section id="objectives" className="py-20 sm:py-28 bg-slate-50 text-[#0A0A0A] border-t border-slate-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-xs font-semibold tracking-widest text-[#00A3FF] uppercase">
-            FIVE CORE PILLARS
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <span className="text-xs font-semibold tracking-widest text-[#00A3FF] uppercase block">
+            MEASURABLE ENVIRONMENTAL OUTCOMES
           </span>
           <h2 className="font-thunder text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0A0A0A] uppercase">
-            THE FIVE <span className="text-gradient">OBJECTIVES</span>
+            OBJECTIVES
           </h2>
-          <p className="text-base sm:text-lg text-gray-700 font-normal">
-            Every kilometer of the Udupipages Beach Run is anchored by a concrete environmental mission.
+          <p className="text-sm sm:text-base text-slate-700 font-normal">
+            The Beach Run is designed around measurable environmental outcomes through year long activities.
           </p>
         </div>
 
@@ -74,16 +74,16 @@ export const Objectives: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, delay: index * 0.12 }}
-                className={`group relative bg-zinc-50 border border-gray-200 p-8 hover:border-[#00A3FF] shadow-sm hover:shadow-md transition-all duration-300 ${
+                className={`group relative bg-white border border-slate-200 p-8 hover:border-[#00A3FF] shadow-sm hover:shadow-lg transition-all duration-300 ${
                   index === 4 ? 'md:col-span-2 lg:col-span-1' : ''
                 }`}
               >
                 {/* Top Card Badge */}
                 <div className="flex items-center justify-between mb-6">
-                  <span className="font-thunder text-4xl text-gray-300 group-hover:text-[#00A3FF] transition-colors duration-300">
+                  <span className="font-thunder text-4xl text-slate-300 group-hover:text-[#00A3FF] transition-colors duration-300">
                     {obj.num}
                   </span>
-                  <div className="w-12 h-12 bg-white border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform shadow-xs">
+                  <div className="w-12 h-12 bg-sky-50 border border-sky-100 flex items-center justify-center group-hover:scale-110 transition-transform shadow-xs">
                     <Icon className="w-6 h-6 text-[#00A3FF]" />
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export const Objectives: React.FC = () => {
                 <h4 className="text-xs font-bold text-[#00A3FF] uppercase tracking-wider mb-4">
                   {obj.subtitle}
                 </h4>
-                <p className="text-sm text-gray-700 font-normal leading-relaxed">
+                <p className="text-sm text-slate-700 font-normal leading-relaxed">
                   {obj.desc}
                 </p>
 

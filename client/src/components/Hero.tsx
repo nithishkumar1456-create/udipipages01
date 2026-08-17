@@ -3,13 +3,11 @@ import { motion } from 'framer-motion';
 import { ChevronDown, ChevronLeft, ChevronRight, Calendar, MapPin } from 'lucide-react';
 
 const heroImages = [
-  '/images/hero_section/beautiful-nature-tropical-beach.jpg',
-  '/images/hero_section/camille-minouflet-d7M5Xramf8g-unsplash.jpg',
-  '/images/hero_section/beautiful-tropical-beach-sea.jpg',
-  '/images/hero_section/derek-thomson-TWoL-QCZubY-unsplash.jpg',
-  '/images/hero_section/dharmendra-sahu-Ia2Kjtrx8y4-unsplash.jpg',
-  '/images/hero_section/beach-with-sea-without-waves-clouds.jpg',
-  '/images/hero_section/zany-jadraque-ZCRtfop2hZY-unsplash.jpg',
+  '/images/hero_section/udupipages-Beach-Run1.jpg.jpeg',
+  '/images/hero_section/udupipages-Beach-Run2.jpg.jpeg',
+  '/images/hero_section/udupipages-Beach-Run3.jpg.jpeg',
+  '/images/hero_section/udupipages-Beach-Run4.jpg.jpeg',
+  '/images/hero_section/udupipages-Beach-Run5.jpg.jpeg',
 ];
 
 export const Hero: React.FC = () => {
@@ -70,11 +68,11 @@ export const Hero: React.FC = () => {
     <section
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="relative w-full min-h-[100dvh] overflow-hidden bg-[#0A0A0A] flex items-center justify-center pt-24 pb-20 sm:pt-20 sm:pb-16"
+      className="relative w-full min-h-[70vh] sm:min-h-[75vh] md:min-h-[80vh] overflow-hidden bg-white flex items-center justify-center pt-20 pb-12 sm:pt-16 sm:pb-10"
       aria-label="Hero Section"
     >
-      {/* Background Slideshow: Stacked Image Layers with Silky 1.8s Crossfade & Softer Opacity */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#0A0A0A]">
+      {/* Background Slideshow: Stacked Image Layers */}
+      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-white">
         {heroImages.map((src, index) => {
           const isActive = index === currentIndex;
           return (
@@ -85,11 +83,11 @@ export const Hero: React.FC = () => {
               loading={index === 0 ? 'eager' : 'lazy'}
               initial={false}
               animate={{
-                opacity: isActive ? 0.70 : 0, // Softer background opacity (70% max)
-                scale: isActive ? 1.05 : 1.0,  // Subtle slow Ken Burns zoom
+                opacity: isActive ? 0.95 : 0,
+                scale: isActive ? 1.04 : 1.0,
               }}
               transition={{
-                opacity: { duration: 1.8, ease: [0.4, 0.0, 0.2, 1] }, // Extra smooth crossfade
+                opacity: { duration: 1.6, ease: [0.4, 0.0, 0.2, 1] },
                 scale: { duration: 6.0, ease: 'linear' },
               }}
               className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
@@ -98,44 +96,44 @@ export const Hero: React.FC = () => {
         })}
       </div>
 
-      {/* Aesthetic Vignette Overlay for High Typography Contrast */}
-      <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-white/30 to-white/45 z-10 pointer-events-none" />
+      {/* Light Vignette Overlay for Contrast (Reduced opacity so slideshow is clearly visible) */}
+      <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-white/15 to-white/25 z-10 pointer-events-none" />
 
       {/* Ocean Blue Radial Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[500px] bg-[radial-gradient(circle,rgba(0,163,255,0.18)_0%,rgba(255,255,255,0)_70%)] pointer-events-none z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[radial-gradient(circle,rgba(0,163,255,0.18)_0%,rgba(255,255,255,0)_70%)] pointer-events-none z-10" />
 
       {/* Hero Main Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full pointer-events-auto">
+      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full pointer-events-auto">
         
         {/* Official Logo Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center space-x-2.5 sm:space-x-3 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/95 border border-[#00A3FF]/40 backdrop-blur-md mb-4 sm:mb-6 shadow-md max-w-full"
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-white/95 border border-[#00A3FF]/40 backdrop-blur-md mb-3 sm:mb-4 shadow-md max-w-full"
         >
           <img
             src="/images/logo.png"
             alt="Official Logo"
-            className="w-5 h-5 sm:w-6 sm:h-6 object-contain flex-shrink-0"
+            className="w-6 h-6 sm:w-7 sm:h-7 object-contain flex-shrink-0"
           />
-          <span className="text-[11px] sm:text-xs md:text-sm font-semibold tracking-wider text-[#0A0A0A] uppercase truncate">
-            Official Coastal Marathon & Marine Conservation
+          <span className="text-[10px] sm:text-xs md:text-sm font-extrabold tracking-wider text-[#0A0A0A] uppercase truncate">
+            Official Coastal Marathon & Marine Preservation
           </span>
         </motion.div>
 
         {/* Display Headline */}
-        <h1 className="font-thunder text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] xl:text-[11rem] leading-[0.95] tracking-wide text-[#0A0A0A] uppercase text-center font-extrabold drop-shadow-sm max-w-full overflow-hidden">
+        <h1 className="font-thunder text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-wide text-[#0A0A0A] uppercase text-center font-extrabold drop-shadow-xs max-w-full overflow-hidden">
           {titleWords.map((word, wordIdx) => (
-            <span key={wordIdx} className="inline-block mx-2 sm:mx-4 md:mx-6">
+            <span key={wordIdx} className="inline-block mx-1.5 sm:mx-3 md:mx-4">
               {word.split('').map((char, charIdx) => (
                 <motion.span
                   key={charIdx}
-                  initial={reducedMotion ? {} : { opacity: 0, y: 40 }}
+                  initial={reducedMotion ? {} : { opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.5,
-                    delay: reducedMotion ? 0 : 0.2 + (wordIdx * 4 + charIdx) * 0.03,
+                    duration: 0.4,
+                    delay: reducedMotion ? 0 : 0.15 + (wordIdx * 4 + charIdx) * 0.025,
                     ease: [0.215, 0.61, 0.355, 1],
                   }}
                   className={`inline-block ${
@@ -151,30 +149,30 @@ export const Hero: React.FC = () => {
           ))}
         </h1>
 
-        {/* Subline */}
+        {/* Subline: Kapu text set to Black */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-6 max-w-3xl text-base sm:text-xl text-gray-900 font-medium tracking-wide leading-relaxed"
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-4 max-w-2xl text-sm sm:text-lg text-slate-800 font-semibold tracking-wide leading-relaxed"
         >
           Run for the coast. Protect our ocean. Experience Udupi's coastal edge from{' '}
-          <span className="font-bold text-[#0A0A0A]">Padukere Ground</span> to{' '}
-          <span className="font-bold text-[#00A3FF]">Kapu Light House</span>.
+          <span className="font-bold text-white bg-[#0A0A0A] px-2 py-0.5 shadow-sm">Padukere Ground</span> to{' '}
+          <span className="font-bold text-black bg-white px-2 py-0.5 border border-slate-300 shadow-sm">Kapu Light House</span>.
         </motion.p>
 
         {/* Info Meta Pills */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
-          className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm text-gray-900 font-bold"
+          transition={{ duration: 0.4, delay: 0.7 }}
+          className="mt-5 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm text-slate-900 font-bold"
         >
-          <div className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-none bg-white border border-gray-200 shadow-sm">
+          <div className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-none bg-white border border-slate-200 shadow-sm">
             <Calendar className="w-4 h-4 text-[#00A3FF]" />
             <span>6TH DECEMBER 2026 • 5:30 AM – 10:00 AM</span>
           </div>
-          <div className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-none bg-white border border-gray-200 shadow-sm">
+          <div className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-none bg-white border border-slate-200 shadow-sm">
             <MapPin className="w-4 h-4 text-[#00A3FF]" />
             <span>PADUKERE TO KAPU LIGHT HOUSE, UDUPI</span>
           </div>
@@ -182,14 +180,14 @@ export const Hero: React.FC = () => {
 
         {/* Registration CTA Button */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
-          className="mt-10"
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="mt-6"
         >
           <a
             href="#register"
-            className="group relative inline-flex items-center justify-center px-10 py-5 bg-sunset-gradient text-white font-thunder text-2xl uppercase tracking-wider font-extrabold overflow-hidden shadow-[0_4px_20px_rgba(0,163,255,0.35)] transition-transform hover:scale-105 active:scale-95"
+            className="group relative inline-flex items-center justify-center px-8 py-4 bg-sunset-gradient text-white font-sans text-base sm:text-lg uppercase tracking-[0.15em] font-extrabold shadow-[0_4px_25px_rgba(0,163,255,0.4)] transition-transform hover:scale-105 active:scale-95 border border-white/20"
           >
             <span className="relative z-10">SECURE YOUR BIB NOW</span>
             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
@@ -200,31 +198,31 @@ export const Hero: React.FC = () => {
       {/* Manual Controls: Previous Button */}
       <button
         onClick={handlePrev}
-        className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/80 hover:bg-white border border-gray-200 text-[#0A0A0A] hover:text-[#00A3FF] items-center justify-center transition-all shadow-md backdrop-blur-sm"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/80 hover:bg-white border border-slate-200 text-[#0A0A0A] hover:text-[#00A3FF] items-center justify-center transition-all shadow-md backdrop-blur-sm"
         aria-label="Previous Slide"
       >
-        <ChevronLeft className="w-6 h-6" />
+        <ChevronLeft className="w-5 h-5" />
       </button>
 
       {/* Manual Controls: Next Button */}
       <button
         onClick={handleNext}
-        className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/80 hover:bg-white border border-gray-200 text-[#0A0A0A] hover:text-[#00A3FF] items-center justify-center transition-all shadow-md backdrop-blur-sm"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/80 hover:bg-white border border-slate-200 text-[#0A0A0A] hover:text-[#00A3FF] items-center justify-center transition-all shadow-md backdrop-blur-sm"
         aria-label="Next Slide"
       >
-        <ChevronRight className="w-6 h-6" />
+        <ChevronRight className="w-5 h-5" />
       </button>
 
       {/* Slideshow Pagination Dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center space-x-2 bg-white/80 backdrop-blur-md px-4 py-2 border border-gray-200 shadow-sm">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center space-x-2 bg-white/80 backdrop-blur-md px-3 py-1.5 border border-slate-200 shadow-sm">
         {heroImages.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentIndex(idx)}
             className={`transition-all duration-300 ${
               currentIndex === idx
-                ? 'w-6 h-2 bg-[#00A3FF]'
-                : 'w-2 h-2 bg-gray-400 hover:bg-gray-600'
+                ? 'w-5 h-1.5 bg-[#00A3FF]'
+                : 'w-1.5 h-1.5 bg-slate-400 hover:bg-slate-600'
             }`}
             aria-label={`Go to slide ${idx + 1}`}
           />
@@ -234,10 +232,10 @@ export const Hero: React.FC = () => {
       {/* Down Scroll Anchor */}
       <a
         href="#about"
-        className="hidden lg:flex absolute bottom-6 right-8 z-20 text-[#0A0A0A]/70 hover:text-[#00A3FF] transition-colors flex-col items-center space-y-1"
+        className="hidden lg:flex absolute bottom-4 right-6 z-20 text-slate-700 hover:text-[#00A3FF] transition-colors flex-col items-center space-y-1"
         aria-label="Scroll to About section"
       >
-        <span className="text-[10px] tracking-widest uppercase font-bold">DISCOVER MORE</span>
+        <span className="text-[9px] tracking-widest uppercase font-bold">DISCOVER MORE</span>
         <ChevronDown className="w-4 h-4 animate-bounce text-[#00A3FF]" />
       </a>
     </section>

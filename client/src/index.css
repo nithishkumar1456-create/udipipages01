@@ -6,13 +6,12 @@
   body {
     background-color: #FFFFFF;
     color: #0A0A0A;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6, .font-thunder {
-    font-family: 'Anton', 'Archivo Black', sans-serif;
-    letter-spacing: 0.04em !important;
-    word-spacing: 12px !important;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
   }
 }
@@ -24,51 +23,22 @@ html, body {
   touch-action: manipulation;
 }
 
-/* Mobile responsive word spacing */
-@media (max-width: 640px) {
-  h1, h2, h3, h4, h5, h6, .font-thunder,
-  .font-thunder span,
-  h1 span, h2 span, h3 span, h4 span {
-    word-spacing: 4px !important;
-  }
-}
-
-/* Ensure all display text spans have exact word-spacing 12px & letter-spacing 0.04em on desktop */
-.font-thunder span,
-h1 span,
-h2 span,
-h3 span,
-h4 span,
-h5 span,
-h6 span {
-  letter-spacing: 0.04em !important;
-}
-
-/* Override squishing caused by tight tracking utility classes */
-.tracking-tight,
-.tracking-tighter,
-.tracking-normal,
-.tracking-wide {
-  letter-spacing: 0.04em !important;
-  word-spacing: 12px !important;
-}
-
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F4F4F5;
+  background: #F1F5F9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4D4D8;
+  background: #00A3FF;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00A3FF;
+  background: #0066FF;
 }
 
 /* Text Accent Gradient Utility */

@@ -193,7 +193,7 @@ export const Register: React.FC = () => {
         }
       };
 
-      const razorpayWindow = new window.Razorpay(options);
+      const razorpayWindow = new (window as any).Razorpay(options);
       razorpayWindow.open();
     } catch (err: any) {
       console.error('Registration submit error:', err);
@@ -203,19 +203,19 @@ export const Register: React.FC = () => {
   };
 
   return (
-    <section id="register" className="py-24 sm:py-32 bg-white border-t border-gray-200 relative">
+    <section id="register" className="py-20 sm:py-28 bg-white text-[#0A0A0A] border-t border-slate-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-xs font-semibold tracking-widest text-[#00A3FF] uppercase">
-            REGISTRATION PORTAL
+        <div className="text-center max-w-4xl mx-auto mb-14 space-y-3">
+          <span className="text-xs font-semibold tracking-widest text-[#00A3FF] uppercase block">
+            OFFICIAL REGISTRATION PORTAL
           </span>
-          <h2 className="font-thunder text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0A0A0A] uppercase">
-            CLAIM YOUR <span className="text-gradient">STARTING BIB</span>
+          <h2 className="font-thunder text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#0A0A0A] uppercase whitespace-nowrap overflow-hidden text-ellipsis w-full text-center tracking-wide">
+            CLAIM YOUR STARTING LINE
           </h2>
-          <p className="text-base sm:text-lg text-gray-700 font-normal">
-            Select your distance category below to begin official registration for 6th December 2026.
+          <p className="text-sm sm:text-base text-slate-700 font-normal max-w-2xl mx-auto">
+            Select your distance category below to secure your bib for 6th December 2026.
           </p>
         </div>
 
@@ -226,15 +226,19 @@ export const Register: React.FC = () => {
             return (
               <div
                 key={cat.id}
-                className={`relative bg-zinc-50 border p-8 flex flex-col justify-between transition-all duration-300 shadow-sm ${
+                className={`relative bg-slate-50 border p-7 flex flex-col justify-between transition-all duration-300 shadow-md rounded-none ${
                   isSelected
-                    ? 'border-[#00A3FF] shadow-[0_4px_20px_rgba(0,163,255,0.25)] scale-[1.02] bg-white'
-                    : 'border-gray-200 hover:border-[#00A3FF]'
+                    ? 'border-[#00A3FF] shadow-[0_4px_25px_rgba(0,163,255,0.25)] scale-[1.02] bg-sky-50/60'
+                    : 'border-slate-200 hover:border-[#00A3FF]'
                 }`}
               >
-                {cat.isFree && (
-                  <span className="absolute top-4 right-4 bg-emerald-100 text-emerald-700 border border-emerald-300 text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
+                {cat.isFree ? (
+                  <span className="absolute top-4 right-4 bg-emerald-100 text-emerald-800 border border-emerald-300 text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
                     FREE ENTRY
+                  </span>
+                ) : (
+                  <span className="absolute top-4 right-4 bg-sky-100 text-[#00A3FF] border border-sky-300 text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
+                    TIMED BIB
                   </span>
                 )}
 
@@ -242,35 +246,35 @@ export const Register: React.FC = () => {
                   <span className="text-xs font-mono text-[#00A3FF] uppercase tracking-widest block mb-1 font-bold">
                     {cat.distance}
                   </span>
-                  <h3 className="font-thunder text-2xl sm:text-3xl text-[#0A0A0A] mb-3">
+                  <h3 className="font-thunder text-2xl sm:text-3xl text-[#0A0A0A] mb-2">
                     {cat.name}
                   </h3>
-                  <p className="text-xs text-gray-700 font-normal leading-relaxed mb-6">
+                  <p className="text-xs text-slate-600 font-normal leading-relaxed mb-5">
                     {cat.description}
                   </p>
 
-                  <div className="space-y-2 border-t border-gray-200 pt-4 text-xs text-gray-700">
+                  <div className="space-y-2 border-t border-slate-200 pt-4 text-xs text-slate-700">
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Flag-Off:</span>
+                      <span className="text-slate-500">Flag-Off:</span>
                       <span className="font-semibold text-[#0A0A0A]">{cat.flagOffTime}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Eligibility:</span>
+                      <span className="text-slate-500">Eligibility:</span>
                       <span className="font-semibold text-[#0A0A0A]">{cat.eligibility}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-gray-200 space-y-4">
+                <div className="mt-6 pt-4 border-t border-slate-200 space-y-4">
                   <div className="flex items-baseline justify-between">
-                    <span className="text-xs text-gray-500 uppercase font-medium">Entry Fee:</span>
+                    <span className="text-xs text-slate-500 uppercase font-medium">Entry Fee:</span>
                     <span className="font-thunder text-3xl text-[#0A0A0A]">
                       {cat.isFree ? (
-                        <span className="text-emerald-600">₹0</span>
+                        <span className="text-emerald-600">FREE</span>
                       ) : (
                         <>
                           <span className="text-[#00A3FF]">₹{cat.priceINR}</span>
-                          <span className="text-xs text-gray-500 font-normal ml-1">(TBD)</span>
+                          <span className="text-xs text-slate-500 font-normal ml-1">INR</span>
                         </>
                       )}
                     </span>
@@ -278,9 +282,9 @@ export const Register: React.FC = () => {
 
                   <button
                     onClick={() => handleOpenRegistration(cat)}
-                    className="w-full py-3 bg-sunset-gradient text-white font-thunder text-lg uppercase font-bold tracking-wider hover:opacity-95 transition-opacity flex items-center justify-center space-x-2 shadow-sm"
+                    className="w-full py-3.5 bg-sunset-gradient text-white font-thunder text-lg uppercase font-bold tracking-wider hover:scale-[1.02] active:scale-98 transition-transform flex items-center justify-center space-x-2 shadow-md"
                   >
-                    <span>SELECT & REGISTER</span>
+                    <span>SELECT & REGISTER NOW</span>
                     <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -290,7 +294,7 @@ export const Register: React.FC = () => {
         </div>
 
         {/* Razorpay Test Mode Badge Notice */}
-        <div className="flex items-center justify-center space-x-2 text-xs text-gray-600 text-center font-medium">
+        <div className="flex items-center justify-center space-x-2 text-xs text-slate-600 text-center font-medium">
           <ShieldCheck className="w-4 h-4 text-[#00A3FF]" />
           <span>Encrypted payment processing via Razorpay. Support for UPI, Credit/Debit Cards & Netbanking.</span>
         </div>
