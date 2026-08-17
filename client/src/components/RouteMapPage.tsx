@@ -6,16 +6,16 @@ import {
   Navigation,
   Compass,
   Download,
-  Share2,
-  Clock,
-  Zap,
   CheckCircle2,
   ExternalLink,
   ShieldCheck,
   Maximize2,
   X,
   Droplets,
-  Award
+  Award,
+  Camera,
+  Eye,
+  Info
 } from 'lucide-react';
 
 export interface RouteWaypoint {
@@ -26,6 +26,9 @@ export interface RouteWaypoint {
   surface: string;
   description: string;
   highlights: string[];
+  image: string;
+  xPercent: number; // percentage on map image for hotspot pins
+  yPercent: number;
 }
 
 export const routeWaypoints: RouteWaypoint[] = [
@@ -35,53 +38,71 @@ export const routeWaypoints: RouteWaypoint[] = [
     distance: '0.0 KM (FLAG-OFF 5:30 AM)',
     elevation: '2m above sea level',
     surface: 'Paved Asphalt & Open Beach Sand',
-    description: 'The starting arena situated near Malpe Sea Walk & Padukere estuary. 1,500 runners assemble under sunrise lights.',
-    highlights: ['Medical & Triage Tent', 'Bag Deposit Counter', 'Warm-up Zone', 'Pre-race Hydration']
+    description: 'The starting arena situated near Malpe Sea Walk & Padukere estuary. 1,500 runners assemble under morning sunrise lights.',
+    highlights: ['Medical & Triage Tent', 'Bag Deposit Counter', 'Warm-up Zone', 'Pre-race Hydration'],
+    image: '/images/checkpoints/PADUKERE GROUND.webp',
+    xPercent: 30,
+    yPercent: 15,
   },
   {
     id: 'padukare-school',
     name: 'PADUKARE SCHOOL GROUND',
     distance: '3.0 KM TURNAROUND',
-    description: 'Runner pack separates along the firm coastal road parallel to coastal coconut plantations.',
     elevation: '3m above sea level',
     surface: 'Smooth Coastal Asphalt',
-    highlights: ['3K Timing Mat', 'Water & Electrolyte Station', 'Local School Cheer Squad']
+    description: 'Runner pack separates along the firm coastal road parallel to coastal coconut plantations.',
+    highlights: ['3K Timing Mat', 'Water & Electrolyte Station', 'Local School Cheer Squad'],
+    image: '/images/checkpoints/PADUKARE SCHOOL GROUND.jpg',
+    xPercent: 47,
+    yPercent: 29,
   },
   {
     id: 'blue-wave',
     name: 'BLUE WAVE WARRIORS PADUKARE',
     distance: '5.0 KM CHECKPOINT',
-    description: 'Transition zone near Katpadi estuary connector and Hanging Bridge access trail.',
     elevation: '2m above sea level',
     surface: 'Hard-packed Sand & Paved Track',
-    highlights: ['5K Timing Split Mat', 'Fresh Tender Coconuts', 'First Aid Station']
+    description: 'Transition zone near Katpadi estuary connector and Hanging Bridge access trail.',
+    highlights: ['5K Timing Split Mat', 'Fresh Tender Coconuts', 'First Aid Station'],
+    image: '/images/checkpoints/Blue Wave Warriors Padukare.png',
+    xPercent: 51,
+    yPercent: 43,
   },
   {
     id: 'mattu-beach',
     name: 'MATTU BEACH',
     distance: '10.0 KM TURNAROUND',
-    description: 'Famed shoreline stretch near Pangala river basin. Ocean breeze and wide open sand vistas.',
     elevation: '1m above sea level',
     surface: 'Wet Firm Shoreline Sand',
-    highlights: ['10K Timing Split Mat', 'Energy Gel & Fruit Station', 'Sponge Cooling Zone']
+    description: 'Famed shoreline stretch near Pangala river basin. Ocean breeze and wide open sand vistas.',
+    highlights: ['10K Timing Split Mat', 'Energy Gel & Fruit Station', 'Sponge Cooling Zone'],
+    image: '/images/checkpoints/mattu-beach2.jpg',
+    xPercent: 57,
+    yPercent: 63,
   },
   {
     id: 'yard-beach',
     name: 'YARD BEACH ULLIYARGOLI',
     distance: '13.5 KM CORRIDOR',
-    description: 'Final coastal stretch before approaching Kapu granite rock formations. Intense spectator cheer zone.',
     elevation: '2m above sea level',
     surface: 'Dune Sand & Shoreline Path',
-    highlights: ['13.5K Hydration Spot', 'Traditional Chende Drum Beats', 'Recovery Hydration']
+    description: 'Final coastal stretch before approaching Kapu granite rock formations. Intense spectator cheer zone.',
+    highlights: ['13.5K Hydration Spot', 'Traditional Chende Drum Beats', 'Recovery Hydration'],
+    image: '/images/hero_section/udupipages-Beach-Run4.jpg.jpeg',
+    xPercent: 65,
+    yPercent: 81,
   },
   {
     id: 'kapu-lighthouse',
     name: 'FINISH LINE: KAPU LIGHT HOUSE',
     distance: '15.2 KM VICTORIES (EST. 33-90 MIN)',
-    description: 'Historic 1901 Kapu Light House atop majestic ocean rocks marking the official finish line.',
     elevation: '12m above sea level (Finish Arch)',
     surface: 'Granite Path & Finish Carpet',
-    highlights: ['Official Finisher Medal Desk', 'Breakfast & Tender Coconut Pavilion', 'Cold Plunge Zone', 'Physio Recovery Tents']
+    description: 'Historic 1901 Kapu Light House atop majestic ocean rocks marking the official finish line.',
+    highlights: ['Official Finisher Medal Desk', 'Breakfast & Tender Coconut Pavilion', 'Cold Plunge Zone', 'Physio Recovery Tents'],
+    image: '/images/checkpoints/KAPU LIGHT HOUSE.jpg',
+    xPercent: 71,
+    yPercent: 93,
   }
 ];
 
@@ -91,6 +112,7 @@ interface RouteMapPageProps {
 
 export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
   const [selectedWaypoint, setSelectedWaypoint] = useState<RouteWaypoint>(routeWaypoints[0]);
+  const [locationPhotoModal, setLocationPhotoModal] = useState<RouteWaypoint | null>(null);
   const [imageModalOpen, setImageModalOpen] = useState(false);
 
   const handleDownloadGPX = () => {
@@ -122,6 +144,12 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
     document.body.removeChild(link);
   };
 
+  const handleMarkerClick = (wp: RouteWaypoint, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedWaypoint(wp);
+    setLocationPhotoModal(wp);
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-[#0A0A0A] font-sans pb-24 pt-20">
       
@@ -137,7 +165,7 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
           </button>
 
           <div className="flex items-center space-x-3 text-xs text-slate-600 font-mono">
-            <span>OFFICIAL GOOGLE MAPS COURSE DATA</span>
+            <span>INTERACTIVE MAP • CLICK LOCATION TO VIEW PHOTO</span>
             <span>•</span>
             <span className="text-[#00A3FF] font-bold">TOTAL DISTANCE: 15.2 KM</span>
           </div>
@@ -150,13 +178,13 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
         <div className="mb-10 text-center sm:text-left space-y-3 border-b border-slate-200 pb-8">
           <div className="inline-flex items-center space-x-2 px-3 py-1 bg-sky-50 border border-[#00A3FF]/40 rounded-full text-xs font-semibold tracking-widest text-[#00A3FF] uppercase">
             <Navigation className="w-3.5 h-3.5 text-[#00A3FF]" />
-            <span>CERTIFIED 15.2KM SHORELINE CORRIDOR</span>
+            <span>INTERACTIVE LOCATION PHOTO EXPLORER</span>
           </div>
           <h1 className="font-thunder text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0A0A0A] uppercase tracking-wide">
-            OFFICIAL <span className="text-gradient">ROUTE MAP & COURSE</span> GUIDE
+            OFFICIAL <span className="text-gradient">ROUTE MAP & LOCATION</span> PHOTOS
           </h1>
           <p className="text-sm sm:text-base text-slate-600 font-normal max-w-3xl leading-relaxed">
-            Detailed breakdown of the 15.2 KM coastal marathon track from Padukere Ground past Mattu Beach to Kapu Light House.
+            Click directly on any location pin on the map below to instantly display real photography and ground details for that exact checkpoint.
           </p>
         </div>
 
@@ -187,13 +215,13 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
         {/* Main Route Map Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
           
-          {/* Left Column: Official Google Maps Route Image Display */}
+          {/* Left Column: Official Google Maps Route Image with Interactive Location Hotspots */}
           <div className="lg:col-span-7 bg-white border border-slate-200 shadow-md p-4 space-y-4">
             <div className="flex items-center justify-between border-b border-slate-200 pb-3">
               <div className="flex items-center space-x-2">
                 <Compass className="w-4 h-4 text-[#00A3FF]" />
                 <span className="text-xs font-mono font-bold text-[#0A0A0A] uppercase tracking-wider">
-                  SATELLITE & ROAD CORRIDOR MAP
+                  CLICK ANY LOCATION PIN TO VIEW PHOTO
                 </span>
               </div>
               <button
@@ -201,24 +229,65 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
                 className="inline-flex items-center space-x-1 text-xs font-bold text-[#00A3FF] hover:text-[#0066FF] uppercase"
               >
                 <Maximize2 className="w-3.5 h-3.5" />
-                <span>EXPAND FULLSCREEN MAP</span>
+                <span>EXPAND FULL MAP</span>
               </button>
             </div>
 
-            {/* Uploaded Google Maps Route Image */}
-            <div
-              onClick={() => setImageModalOpen(true)}
-              className="relative cursor-pointer overflow-hidden bg-slate-900 border border-slate-200 group rounded-none"
-            >
+            {/* Uploaded Google Maps Route Image Container with Pin Overlays */}
+            <div className="relative w-full bg-slate-900 border border-slate-200 overflow-hidden select-none">
               <img
                 src="/images/route-map-google.png"
                 alt="Official Udupipages Beach Run 15.2KM Google Maps Route"
-                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-auto object-contain block"
               />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors flex items-center justify-center">
-                <div className="bg-black/80 text-white text-xs font-mono px-3 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity border border-white/20">
-                  CLICK TO VIEW FULL HIGH-RESOLUTION MAP
-                </div>
+
+              {/* Interactive Location Pins Overlay */}
+              {routeWaypoints.map((wp) => {
+                const isSelected = selectedWaypoint.id === wp.id;
+                return (
+                  <div
+                    key={wp.id}
+                    style={{
+                      left: `${wp.xPercent}%`,
+                      top: `${wp.yPercent}%`,
+                    }}
+                    onClick={(e) => handleMarkerClick(wp, e)}
+                    className="absolute -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer group"
+                  >
+                    <div className="relative flex items-center justify-center">
+                      {/* Pulse Ring for Selected Pin */}
+                      {isSelected && (
+                        <div className="w-9 h-9 rounded-full bg-[#00A3FF]/40 border-2 border-[#00A3FF] flex items-center justify-center animate-ping absolute inset-0" />
+                      )}
+
+                      {/* Map Pin Icon Badge */}
+                      <div
+                        className={`px-2 py-1 rounded-full flex items-center space-x-1.5 shadow-xl transition-transform group-hover:scale-125 border ${
+                          isSelected
+                            ? 'bg-[#00A3FF] text-white border-white'
+                            : 'bg-black/85 text-white border-[#00A3FF]/70 hover:bg-[#00A3FF]'
+                        }`}
+                      >
+                        <Camera className="w-3.5 h-3.5 flex-shrink-0" />
+                        <span className="text-[10px] font-mono font-extrabold uppercase tracking-wider whitespace-nowrap hidden sm:inline-block">
+                          {wp.id === 'padukere' ? '0.0K' : wp.id === 'padukare-school' ? '3K' : wp.id === 'blue-wave' ? '5K' : wp.id === 'mattu-beach' ? '10K' : wp.id === 'yard-beach' ? '13.5K' : '15.2K'}
+                        </span>
+                      </div>
+
+                      {/* Hover Tooltip Preview Badge */}
+                      <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-black/95 border border-[#00A3FF]/60 text-white p-2 rounded-none text-[10px] font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-2xl pointer-events-none z-30 space-y-1">
+                        <span className="font-bold text-[#00A3FF] block">{wp.name}</span>
+                        <span className="text-gray-300 block">{wp.distance}</span>
+                        <span className="text-emerald-400 font-bold block">📸 CLICK TO VIEW PHOTO</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+
+              <div className="absolute bottom-3 left-3 bg-black/85 backdrop-blur-md px-3 py-1.5 border border-slate-700 text-[11px] font-mono text-white flex items-center space-x-2">
+                <Info className="w-3.5 h-3.5 text-[#00A3FF]" />
+                <span>TAP ANY CAMERA PIN ON MAP TO SEE PHOTO</span>
               </div>
             </div>
 
@@ -244,14 +313,14 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
             </div>
           </div>
 
-          {/* Right Column: Interactive Waypoints & Checkpoint Details */}
+          {/* Right Column: Checkpoint Details & Location Photo Preview */}
           <div className="lg:col-span-5 space-y-4">
             <div className="bg-white p-5 border border-slate-200 shadow-xs space-y-3">
               <h3 className="font-thunder text-2xl text-[#0A0A0A] uppercase tracking-wider">
                 SELECT A COURSE CHECKPOINT
               </h3>
               <p className="text-xs text-slate-500 font-normal">
-                Click any key waypoint below to view detailed ground terrain, hydration facilities, and race specifications.
+                Select any location below or click on the map pins to reveal the ground photography and facilities.
               </p>
 
               {/* Waypoint Selection Buttons */}
@@ -261,7 +330,10 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
                   return (
                     <button
                       key={wp.id}
-                      onClick={() => setSelectedWaypoint(wp)}
+                      onClick={() => {
+                        setSelectedWaypoint(wp);
+                        setLocationPhotoModal(wp);
+                      }}
                       className={`w-full text-left p-3.5 border transition-all flex items-center justify-between ${
                         isSelected
                           ? 'bg-[#00A3FF] text-white border-[#00A3FF] shadow-xs'
@@ -276,14 +348,17 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
                           {wp.distance}
                         </span>
                       </div>
-                      <MapPin className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-[#00A3FF]'}`} />
+                      <div className="flex items-center space-x-1.5">
+                        <Camera className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-[#00A3FF]'}`} />
+                        <MapPin className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-slate-400'}`} />
+                      </div>
                     </button>
                   );
                 })}
               </div>
             </div>
 
-            {/* Selected Waypoint Detailed Card */}
+            {/* Selected Waypoint Detailed Card with Photo Display */}
             <div className="bg-white p-6 border border-slate-200 shadow-sm space-y-4">
               <div className="border-b border-slate-100 pb-3 flex justify-between items-start">
                 <div>
@@ -293,6 +368,28 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
                   <h4 className="font-thunder text-2xl text-[#0A0A0A] mt-1">
                     {selectedWaypoint.name}
                   </h4>
+                </div>
+              </div>
+
+              {/* Location Photo Display */}
+              <div
+                onClick={() => setLocationPhotoModal(selectedWaypoint)}
+                className="relative h-48 w-full overflow-hidden bg-slate-900 cursor-pointer border border-slate-200 group"
+              >
+                <img
+                  src={selectedWaypoint.image}
+                  alt={selectedWaypoint.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-mono">
+                  <span className="bg-[#00A3FF] text-white px-2 py-0.5 text-[10px] font-bold uppercase">
+                    LOCATION PHOTO
+                  </span>
+                  <span className="bg-black/80 px-2 py-0.5 text-[10px] uppercase font-bold flex items-center space-x-1">
+                    <Eye className="w-3 h-3 text-[#00A3FF]" />
+                    <span>CLICK TO ENLARGE</span>
+                  </span>
                 </div>
               </div>
 
@@ -330,7 +427,7 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
 
         </div>
 
-        {/* Hydration & Safety Section */}
+        {/* Safety & Hydration Logistics */}
         <div className="bg-slate-900 text-white p-8 sm:p-12 border border-slate-800 shadow-xl space-y-6">
           <div className="max-w-3xl space-y-3">
             <span className="text-xs font-mono text-[#00A3FF] uppercase font-bold tracking-widest bg-black px-3 py-1 border border-[#00A3FF]/40">
@@ -373,7 +470,63 @@ export const RouteMapPage: React.FC<RouteMapPageProps> = ({ onBackToHome }) => {
 
       </div>
 
-      {/* Fullscreen Image Modal */}
+      {/* Location Photo Pop-up Modal when clicking map pins */}
+      <AnimatePresence>
+        {locationPhotoModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="bg-white border border-slate-200 max-w-2xl w-full p-6 space-y-4 relative shadow-2xl"
+            >
+              <button
+                onClick={() => setLocationPhotoModal(null)}
+                className="absolute top-4 right-4 p-2 text-slate-600 hover:text-black bg-slate-100 border border-slate-300 transition-colors"
+                aria-label="Close Location Photo"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="space-y-1">
+                <span className="inline-block text-xs font-mono text-[#00A3FF] uppercase font-bold tracking-widest bg-sky-50 px-2.5 py-0.5 border border-sky-200">
+                  {locationPhotoModal.distance}
+                </span>
+                <h3 className="font-thunder text-3xl text-[#0A0A0A]">
+                  {locationPhotoModal.name}
+                </h3>
+              </div>
+
+              {/* Large Photo Display */}
+              <div className="h-64 sm:h-80 w-full overflow-hidden bg-slate-900 border border-slate-200 relative">
+                <img
+                  src={locationPhotoModal.image}
+                  alt={locationPhotoModal.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-3 left-3 bg-[#00A3FF] text-white text-[10px] font-mono font-bold px-2.5 py-0.5 uppercase">
+                  REAL LOCATION PHOTOGRAPH
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                {locationPhotoModal.description}
+              </p>
+
+              <div className="pt-3 border-t border-slate-100 flex justify-end">
+                <button
+                  onClick={() => setLocationPhotoModal(null)}
+                  className="px-6 py-2.5 bg-sunset-gradient text-white font-sans text-xs uppercase font-extrabold tracking-wider hover:opacity-95"
+                >
+                  CLOSE PREVIEW
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Fullscreen Map Modal */}
       <AnimatePresence>
         {imageModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md">
