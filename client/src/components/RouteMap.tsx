@@ -170,7 +170,7 @@ export const RouteMap: React.FC<RouteMapProps> = ({ onNavigateToRouteMap }) => {
               className="group relative inline-flex items-center justify-center px-8 py-4 bg-sunset-gradient text-white font-sans text-sm sm:text-base font-extrabold uppercase tracking-widest shadow-lg hover:scale-105 transition-transform space-x-3 border border-white/20"
             >
               <Navigation className="w-5 h-5" />
-              <span>EXPLORE FULL INTERACTIVE ROUTE MAP & GPX DATA</span>
+              <span>EXPLORE INTERACTIVE ROUTE</span>
             </button>
           </div>
         )}
