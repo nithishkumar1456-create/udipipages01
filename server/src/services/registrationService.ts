@@ -11,6 +11,7 @@ export interface RegistrationRecord {
   categoryName: string;
   tshirtSize: string;
   emergencyContact: string;
+  previousExperience?: string;
   status: 'PENDING' | 'PAID' | 'FREE';
   amountINR: number;
   razorpayOrderId?: string;
@@ -42,6 +43,7 @@ export class RegistrationService {
     categoryName: string;
     tshirtSize: string;
     emergencyContact: string;
+    previousExperience?: string;
     amountINR: number;
     isFree: boolean;
     razorpayOrderId?: string;
@@ -62,6 +64,7 @@ export class RegistrationService {
       categoryName: data.categoryName,
       tshirtSize: data.tshirtSize,
       emergencyContact: data.emergencyContact,
+      previousExperience: data.previousExperience,
       status,
       amountINR: data.amountINR,
       razorpayOrderId: data.razorpayOrderId,

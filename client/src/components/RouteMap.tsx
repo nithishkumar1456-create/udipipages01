@@ -64,35 +64,35 @@ export const RouteMap: React.FC<RouteMapProps> = ({ onNavigateToRouteMap }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-2 sm:space-y-3">
           <span className="text-xs font-semibold tracking-widest text-[#00A3FF] uppercase block">
             COURSE TRAJECTORY & GOOGLE MAPS CORRIDOR
           </span>
-          <h2 className="font-thunder text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0A0A0A] uppercase">
+          <h2 className="font-thunder text-3xl xs:text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0A0A0A] uppercase">
             THE COASTAL <span className="text-gradient font-thunder">ROUTE MAP</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-700 font-normal">
+          <p className="text-xs sm:text-base text-slate-700 font-normal">
             Official 15.2 KM track running along Udupi’s western shoreline from Padukere Ground to Kapu Light House.
           </p>
         </div>
 
         {/* Map Display & Checkpoint Explorer */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-white border border-slate-200 p-6 sm:p-10 shadow-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch bg-white border border-slate-200 p-4 sm:p-10 shadow-sm">
           
           {/* Left Column: Real Google Maps Route Image */}
           <div className="lg:col-span-7 relative bg-slate-900 border border-slate-200 overflow-hidden flex flex-col justify-between group shadow-md">
-            <div className="relative w-full h-[360px] sm:h-[420px] bg-slate-950 overflow-hidden flex items-center justify-center p-2">
+            <div className="relative w-full h-[240px] xs:h-[300px] sm:h-[380px] md:h-[420px] bg-slate-950 overflow-hidden flex items-center justify-center p-2">
               <img
                 src="/images/route-map-google.png"
                 alt="Official Google Maps Route Padukere to Kapu Light House"
                 className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-4 left-4 bg-black/80 text-white text-[11px] font-mono font-bold px-3 py-1 border border-[#00A3FF]/40 uppercase tracking-widest">
+              <div className="absolute top-3 left-3 bg-black/80 text-white text-[9px] xs:text-[10px] sm:text-[11px] font-mono font-bold px-2.5 py-1 border border-[#00A3FF]/40 uppercase tracking-wider max-w-[90%] truncate">
                 GOOGLE MAPS • 15.2 KM (33 MIN RUN CORRIDOR)
               </div>
             </div>
 
-            <div className="p-4 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-2 text-xs font-mono border-t border-slate-800">
+            <div className="p-3 sm:p-4 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-2 text-[11px] sm:text-xs font-mono border-t border-slate-800">
               <span>START: PADUKERE GROUND</span>
               <span className="text-[#00A3FF] font-bold">FINISH: KAPU LIGHT HOUSE</span>
             </div>
@@ -101,12 +101,12 @@ export const RouteMap: React.FC<RouteMapProps> = ({ onNavigateToRouteMap }) => {
           {/* Right Column: Checkpoint Details Card */}
           <div className="lg:col-span-5 space-y-4 flex flex-col justify-between">
             <div>
-              <h3 className="font-thunder text-2xl text-[#0A0A0A] uppercase tracking-wider mb-3">
+              <h3 className="font-thunder text-xl sm:text-2xl text-[#0A0A0A] uppercase tracking-wider mb-3">
                 CHECKPOINT DETAILS
               </h3>
 
               <div className="bg-slate-50 border-l-4 border-[#00A3FF] border border-slate-200 overflow-hidden shadow-md">
-                <div className="relative h-44 w-full overflow-hidden bg-slate-900">
+                <div className="relative h-36 xs:h-44 w-full overflow-hidden bg-slate-900">
                   <AnimatePresence mode="popLayout">
                     <motion.img
                       key={currentCp.image}
@@ -120,22 +120,22 @@ export const RouteMap: React.FC<RouteMapProps> = ({ onNavigateToRouteMap }) => {
                     />
                   </AnimatePresence>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
-                    <span className="text-xs font-mono font-bold text-[#00A3FF] uppercase tracking-wider bg-black/80 px-2 py-0.5 border border-[#00A3FF]/40">
+                  <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white">
+                    <span className="text-[10px] sm:text-xs font-mono font-bold text-[#00A3FF] uppercase tracking-wider bg-black/80 px-2 py-0.5 border border-[#00A3FF]/40">
                       {currentCp.km}
                     </span>
-                    <span className="text-[10px] bg-white text-black font-bold uppercase px-2 py-0.5">
+                    <span className="text-[9px] sm:text-[10px] bg-white text-black font-bold uppercase px-2 py-0.5">
                       MILESTONE {activeCheckpoint + 1} OF 5
                     </span>
                   </div>
                 </div>
 
-                <div className="p-5 space-y-3">
-                  <h4 className="font-thunder text-2xl text-[#0A0A0A] leading-tight">
+                <div className="p-4 sm:p-5 space-y-2 sm:space-y-3">
+                  <h4 className="font-thunder text-xl sm:text-2xl text-[#0A0A0A] leading-tight">
                     {currentCp.title}
                   </h4>
 
-                  <p className="text-sm text-slate-700 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
                     {currentCp.desc}
                   </p>
                 </div>
@@ -148,7 +148,7 @@ export const RouteMap: React.FC<RouteMapProps> = ({ onNavigateToRouteMap }) => {
                 <button
                   key={cp.id}
                   onClick={() => setActiveCheckpoint(i)}
-                  className={`py-2.5 px-1 border uppercase font-bold text-[10px] sm:text-xs transition-all rounded-none ${
+                  className={`py-2 sm:py-2.5 px-0.5 sm:px-1 border uppercase font-extrabold text-[9px] xs:text-[10px] sm:text-xs transition-all rounded-none ${
                     activeCheckpoint === i
                       ? 'bg-[#00A3FF] text-white border-[#00A3FF] shadow-sm'
                       : 'bg-white text-slate-800 border-slate-200 hover:border-[#00A3FF]'

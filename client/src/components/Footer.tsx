@@ -3,24 +3,24 @@ import { Waves, Mail, Phone, MapPin, ExternalLink, Heart } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-900 border-t border-slate-800 text-slate-200 pt-16 pb-12">
+    <footer className="bg-slate-900 border-t border-slate-800 text-slate-200 pt-12 sm:pt-16 pb-8 sm:pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-slate-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-12 pb-12 sm:pb-16 border-b border-slate-800">
           
           {/* Column 1: Brand Info */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="sm:col-span-2 lg:col-span-5 space-y-4 sm:space-y-6">
             <div className="flex items-center space-x-3">
               <img
                 src="/images/logo.png"
                 alt="Udupipages Beach Run Official Logo"
-                className="h-16 sm:h-20 w-auto object-contain drop-shadow-sm"
+                className="h-12 xs:h-16 sm:h-20 w-auto object-contain drop-shadow-sm flex-shrink-0"
               />
               <div>
-                <span className="font-thunder text-3xl sm:text-4xl text-white tracking-wider block leading-none">
+                <span className="font-thunder text-2xl xs:text-3xl sm:text-4xl text-white tracking-wider block leading-none">
                   UDUPIPAGES
                 </span>
-                <span className="text-[11px] text-[#00A3FF] tracking-widest uppercase font-extrabold block">
+                <span className="text-[10px] sm:text-[11px] text-[#00A3FF] tracking-widest uppercase font-extrabold block">
                   BEACH RUN 2026
                 </span>
               </div>

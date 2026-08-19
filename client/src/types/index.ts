@@ -17,6 +17,7 @@ export interface RegistrationFormData {
   categoryId: string;
   tshirtSize: string;
   emergencyContact: string;
+  previousExperience?: string;
 }
 
 export interface OrderResponse {

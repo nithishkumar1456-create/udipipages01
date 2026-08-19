@@ -6,10 +6,6 @@ import {
   X,
   ArrowLeft,
   MapPin,
-  Download,
-  Share2,
-  Film,
-  Play,
   Search,
   Filter
 } from 'lucide-react';
@@ -128,45 +124,23 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onBackToHome }) => {
   });
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#F5F3EE] font-sans pb-24 pt-20">
+    <div className="min-h-screen bg-white text-[#0A0A0A] font-sans pb-24 pt-20">
       
       {/* Top Header Navigation */}
-      <div className="bg-[#121212] border-b border-slate-800 sticky top-16 z-30 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
-          <button
-            onClick={onBackToHome}
-            className="inline-flex items-center space-x-2 text-xs font-bold text-[#00A3FF] hover:text-white uppercase tracking-wider transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>BACK TO HOME LANDING PAGE</span>
-          </button>
-
-          <div className="flex items-center space-x-3 text-xs text-slate-400 font-mono">
-            <span>OFFICIAL MEDIA ARCHIVE</span>
-            <span>•</span>
-            <span className="text-[#00A3FF] font-bold">{fullGalleryPhotos.length} HIGH-RES ASSETS</span>
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* Page Hero Header */}
-        <div className="mb-10 text-center sm:text-left space-y-3 border-b border-slate-800 pb-8">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#00A3FF]/10 border border-[#00A3FF]/40 rounded-full text-xs font-semibold tracking-widest text-[#00A3FF] uppercase">
-            <Camera className="w-3.5 h-3.5" />
-            <span>HIGH-RESOLUTION DOCUMENTARY MEDIA ARCHIVE</span>
-          </div>
-          <h1 className="font-thunder text-4xl sm:text-6xl md:text-7xl font-extrabold text-white uppercase tracking-wide">
-            COASTAL RUNNING <span className="text-gradient">PHOTO & MEDIA GALLERY</span>
+        <div className="mb-10 text-center sm:text-left space-y-3 border-b border-slate-200 pb-8">
+          <h1 className="font-thunder text-4xl sm:text-6xl md:text-7xl font-extrabold text-[#0A0A0A] uppercase tracking-wide">
+            COASTAL RUNNING <span className="text-gradient-orange">PHOTO & MEDIA GALLERY</span>
           </h1>
-          <p className="text-sm sm:text-base text-slate-400 font-normal max-w-3xl leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-700 font-normal max-w-3xl leading-relaxed">
             Atmospheric documentary photography capturing the athletic grit, tide lines, sand dunes, and natural beauty of Udupi’s coast.
           </p>
         </div>
 
         {/* Search & Category Filter Controls */}
-        <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-4 bg-[#121212] p-4 border border-slate-800">
+        <div className="mb-10 flex flex-col md:flex-row items-center justify-between gap-4 bg-slate-50 p-4 border border-slate-200 shadow-sm">
           <div className="relative w-full md:w-80">
             <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
@@ -174,12 +148,12 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onBackToHome }) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search photography title or topic..."
-              className="w-full pl-10 pr-4 py-2 bg-black border border-slate-800 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#00A3FF]"
+              className="w-full pl-10 pr-4 py-2 bg-white border border-slate-300 text-xs sm:text-sm text-[#0A0A0A] placeholder-slate-400 focus:outline-none focus:border-[#FF7A30]"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-black"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -196,8 +170,8 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onBackToHome }) => {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-all border ${
                     active
-                      ? 'bg-[#00A3FF] text-white border-[#00A3FF]'
-                      : 'bg-black text-slate-400 border-slate-800 hover:border-[#00A3FF] hover:text-white'
+                      ? 'bg-[#FF7A30] text-white border-[#FF7A30] shadow-xs'
+                      : 'bg-white text-slate-700 border-slate-300 hover:border-[#FF7A30] hover:text-[#FF7A30]'
                   }`}
                 >
                   {cat}
@@ -213,7 +187,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onBackToHome }) => {
             <div
               key={photo.id}
               onClick={() => setSelectedPhoto(photo)}
-              className="group relative cursor-pointer overflow-hidden bg-slate-900 border border-slate-800 hover:border-[#00A3FF] transition-all aspect-[4/3] shadow-md"
+              className="group relative cursor-pointer overflow-hidden bg-slate-900 border border-slate-200 hover:border-[#FF7A30] transition-all aspect-[4/3] shadow-md"
             >
               <img
                 src={photo.src}
@@ -224,14 +198,14 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onBackToHome }) => {
 
               <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">
                 <div className="flex justify-between items-center">
-                  <span className="text-[10px] font-mono tracking-widest text-[#00A3FF] bg-black/80 px-2.5 py-0.5 uppercase font-bold border border-[#00A3FF]/40">
+                  <span className="text-[10px] font-mono tracking-widest text-[#FF7A30] bg-black/80 px-2.5 py-0.5 uppercase font-bold border border-[#FF7A30]/40">
                     {photo.category}
                   </span>
-                  <Camera className="w-4 h-4 text-white/70 group-hover:text-[#00A3FF] transition-colors" />
+                  <Camera className="w-4 h-4 text-white/70 group-hover:text-[#FF7A30] transition-colors" />
                 </div>
 
                 <div className="space-y-1 text-white">
-                  <h3 className="font-thunder text-2xl group-hover:text-[#00A3FF] transition-colors">
+                  <h3 className="font-thunder text-2xl font-extrabold group-hover:text-[#FF7A30] transition-colors">
                     {photo.title}
                   </h3>
                   <p className="text-xs text-gray-300 font-normal line-clamp-2 leading-relaxed">
@@ -240,9 +214,9 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onBackToHome }) => {
                 </div>
               </div>
 
-              <div className="absolute inset-0 bg-[#00A3FF]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+              <div className="absolute inset-0 bg-[#FF7A30]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
                 <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-                  <Eye className="w-6 h-6 text-[#00A3FF]" />
+                  <Eye className="w-6 h-6 text-[#FF7A30]" />
                 </div>
               </div>
             </div>
@@ -250,17 +224,17 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onBackToHome }) => {
         </div>
 
         {/* Video Highlights Reel */}
-        <div className="bg-[#121212] p-8 border border-slate-800 space-y-6">
+        <div className="bg-slate-50 p-8 border border-slate-200 space-y-6 shadow-sm">
           <div className="space-y-2">
-            <span className="text-xs font-mono text-[#00A3FF] uppercase font-bold tracking-widest bg-black px-2.5 py-1 border border-[#00A3FF]/40">
+            <span className="text-xs font-mono text-[#FF7A30] uppercase font-bold tracking-widest bg-amber-50 px-2.5 py-1 border border-[#FF7A30]/40">
               DOCUMENTARY VIDEO HIGHLIGHTS
             </span>
-            <h3 className="font-thunder text-3xl text-white uppercase">
+            <h3 className="font-thunder text-3xl font-extrabold text-[#0A0A0A] uppercase">
               OFFICIAL 4K MARATHON TRAILER
             </h3>
           </div>
 
-          <div className="relative aspect-video max-w-4xl mx-auto bg-black border border-slate-800 overflow-hidden">
+          <div className="relative aspect-video max-w-4xl mx-auto bg-black border border-slate-200 overflow-hidden shadow-md">
             <video
               src="/hero_section video.mp4"
               controls
@@ -275,11 +249,11 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onBackToHome }) => {
       {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedPhoto && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md">
-            <div className="relative max-w-4xl w-full bg-black border border-slate-800 overflow-hidden shadow-2xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+            <div className="relative max-w-4xl w-full bg-white border border-slate-300 overflow-hidden shadow-2xl">
               <button
                 onClick={() => setSelectedPhoto(null)}
-                className="absolute top-4 right-4 z-20 w-10 h-10 bg-black/70 hover:bg-[#00A3FF] text-white flex items-center justify-center transition-colors border border-white/20"
+                className="absolute top-4 right-4 z-20 w-10 h-10 bg-black/80 hover:bg-[#FF7A30] text-white flex items-center justify-center transition-colors border border-white/20"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -292,26 +266,26 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onBackToHome }) => {
                 />
               </div>
 
-              <div className="p-6 bg-[#121212] text-white space-y-3 border-t border-slate-800">
+              <div className="p-6 bg-white text-[#0A0A0A] space-y-3 border-t border-slate-200">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-mono text-[#00A3FF] uppercase font-bold tracking-widest">
+                  <span className="text-xs font-mono text-[#FF7A30] uppercase font-extrabold tracking-widest">
                     {selectedPhoto.category}
                   </span>
                   {selectedPhoto.camera && (
-                    <span className="text-xs font-mono text-slate-400">
+                    <span className="text-xs font-mono text-slate-500">
                       {selectedPhoto.camera}
                     </span>
                   )}
                 </div>
 
-                <h3 className="font-thunder text-3xl">{selectedPhoto.title}</h3>
-                <p className="text-xs text-gray-300 font-normal leading-relaxed">
+                <h3 className="font-thunder text-3xl font-extrabold text-[#0A0A0A]">{selectedPhoto.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-700 font-normal leading-relaxed">
                   {selectedPhoto.alt}
                 </p>
 
                 {selectedPhoto.location && (
-                  <div className="text-[11px] text-slate-400 font-mono flex items-center space-x-2 pt-2 border-t border-slate-800">
-                    <MapPin className="w-3.5 h-3.5 text-[#00A3FF]" />
+                  <div className="text-[11px] text-slate-600 font-mono flex items-center space-x-2 pt-2 border-t border-slate-200">
+                    <MapPin className="w-3.5 h-3.5 text-[#FF7A30]" />
                     <span>GPS: {selectedPhoto.location}</span>
                     <span>•</span>
                     <span>EXIF: {selectedPhoto.iso}</span>

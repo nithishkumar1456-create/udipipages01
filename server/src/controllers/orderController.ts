@@ -5,7 +5,7 @@ import { RegistrationService } from '../services/registrationService.js';
 
 export const createOrderController = async (req: Request, res: Response) => {
   try {
-    const { fullName, email, phone, age, categoryId, tshirtSize, emergencyContact } = req.body;
+    const { fullName, email, phone, age, categoryId, tshirtSize, emergencyContact, previousExperience } = req.body;
 
     if (!fullName || !email || !phone || !age || !categoryId || !tshirtSize || !emergencyContact) {
       return res.status(400).json({ error: 'Missing required registration fields' });
@@ -27,6 +27,7 @@ export const createOrderController = async (req: Request, res: Response) => {
         categoryName: category.name,
         tshirtSize,
         emergencyContact,
+        previousExperience,
         amountINR: 0,
         isFree: true
       });

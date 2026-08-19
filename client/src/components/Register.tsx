@@ -71,7 +71,8 @@ export const Register: React.FC = () => {
     age: 25,
     categoryId: '5k',
     tshirtSize: 'M',
-    emergencyContact: ''
+    emergencyContact: '',
+    previousExperience: 'First Time Runner (Beginner)'
   });
 
   const handleOpenRegistration = (cat: Category) => {
@@ -207,14 +208,14 @@ export const Register: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-4xl mx-auto mb-14 space-y-3">
+        <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-14 space-y-2 sm:space-y-3">
           <span className="text-xs font-semibold tracking-widest text-[#00A3FF] uppercase block">
             OFFICIAL REGISTRATION PORTAL
           </span>
-          <h2 className="font-thunder text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#0A0A0A] uppercase whitespace-nowrap overflow-hidden text-ellipsis w-full text-center tracking-wide">
+          <h2 className="font-thunder text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#0A0A0A] uppercase leading-tight tracking-wide">
             CLAIM YOUR STARTING LINE
           </h2>
-          <p className="text-sm sm:text-base text-slate-700 font-normal max-w-2xl mx-auto">
+          <p className="text-xs sm:text-base text-slate-700 font-normal max-w-2xl mx-auto">
             Select your distance category below to secure your bib for 6th December 2026.
           </p>
         </div>
@@ -226,34 +227,37 @@ export const Register: React.FC = () => {
             return (
               <div
                 key={cat.id}
-                className={`relative bg-slate-50 border p-7 flex flex-col justify-between transition-all duration-300 shadow-md rounded-none ${
+                className={`relative bg-slate-50 border p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 shadow-md rounded-none ${
                   isSelected
-                    ? 'border-[#00A3FF] shadow-[0_4px_25px_rgba(0,163,255,0.25)] scale-[1.02] bg-sky-50/60'
-                    : 'border-slate-200 hover:border-[#00A3FF]'
+                    ? 'border-[#FF7A30] shadow-[0_4px_25px_rgba(255,122,48,0.25)] scale-[1.02] bg-amber-50/60'
+                    : 'border-slate-200 hover:border-[#FF7A30]'
                 }`}
               >
-                {cat.isFree ? (
-                  <span className="absolute top-4 right-4 bg-emerald-100 text-emerald-800 border border-emerald-300 text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
-                    FREE ENTRY
-                  </span>
-                ) : (
-                  <span className="absolute top-4 right-4 bg-sky-100 text-[#00A3FF] border border-sky-300 text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
-                    TIMED BIB
-                  </span>
-                )}
-
                 <div>
-                  <span className="text-xs font-mono text-[#00A3FF] uppercase tracking-widest block mb-1 font-bold">
-                    {cat.distance}
-                  </span>
-                  <h3 className="font-thunder text-2xl sm:text-3xl text-[#0A0A0A] mb-2">
+                  <div className="flex items-center justify-between mb-2 gap-1">
+                    <span className="text-[11px] font-mono text-[#FF7A30] uppercase tracking-wider font-extrabold truncate">
+                      {cat.distance}
+                    </span>
+                    {cat.isFree ? (
+                      <span className="bg-emerald-100 text-emerald-800 border border-emerald-300 text-[9px] font-extrabold px-1.5 py-0.5 uppercase tracking-wider flex-shrink-0">
+                        FREE ENTRY
+                      </span>
+                    ) : (
+                      <span className="bg-amber-100 text-[#FF7A30] border border-amber-300 text-[9px] font-extrabold px-1.5 py-0.5 uppercase tracking-wider flex-shrink-0">
+                        TIMED BIB
+                      </span>
+                    )}
+                  </div>
+
+                  <h3 className="font-thunder text-sm sm:text-base md:text-lg font-extrabold text-[#0A0A0A] mb-2.5 tracking-tight leading-snug">
                     {cat.name}
                   </h3>
-                  <p className="text-xs text-slate-600 font-normal leading-relaxed mb-5">
+
+                  <p className="text-xs text-slate-600 font-normal leading-relaxed mb-4">
                     {cat.description}
                   </p>
 
-                  <div className="space-y-2 border-t border-slate-200 pt-4 text-xs text-slate-700">
+                  <div className="space-y-2 border-t border-slate-200 pt-3 text-xs text-slate-700">
                     <div className="flex justify-between">
                       <span className="text-slate-500">Flag-Off:</span>
                       <span className="font-semibold text-[#0A0A0A]">{cat.flagOffTime}</span>
@@ -265,15 +269,15 @@ export const Register: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-200 space-y-4">
+                <div className="mt-5 pt-3.5 border-t border-slate-200 space-y-3.5">
                   <div className="flex items-baseline justify-between">
                     <span className="text-xs text-slate-500 uppercase font-medium">Entry Fee:</span>
-                    <span className="font-thunder text-3xl text-[#0A0A0A]">
+                    <span className="font-thunder text-2xl sm:text-3xl text-[#0A0A0A]">
                       {cat.isFree ? (
                         <span className="text-emerald-600">FREE</span>
                       ) : (
                         <>
-                          <span className="text-[#00A3FF]">₹{cat.priceINR}</span>
+                          <span className="text-[#FF7A30]">₹{cat.priceINR}</span>
                           <span className="text-xs text-slate-500 font-normal ml-1">INR</span>
                         </>
                       )}
@@ -282,9 +286,9 @@ export const Register: React.FC = () => {
 
                   <button
                     onClick={() => handleOpenRegistration(cat)}
-                    className="w-full py-3.5 bg-sunset-gradient text-white font-thunder text-lg uppercase font-bold tracking-wider hover:scale-[1.02] active:scale-98 transition-transform flex items-center justify-center space-x-2 shadow-md"
+                    className="w-full py-3 bg-sunset-gradient text-white font-thunder text-base uppercase font-bold tracking-wider hover:scale-[1.02] active:scale-98 transition-transform flex items-center justify-center space-x-2 shadow-md"
                   >
-                    <span>SELECT & REGISTER NOW</span>
+                    <span>SELECT & REGISTER</span>
                     <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -418,7 +422,7 @@ export const Register: React.FC = () => {
                       name="tshirtSize"
                       value={formData.tshirtSize}
                       onChange={handleInputChange}
-                      className="w-full bg-white border border-gray-300 focus:border-[#00A3FF] px-4 py-2.5 text-gray-900 outline-none shadow-xs"
+                      className="w-full bg-white border border-gray-300 focus:border-[#FF7A30] px-4 py-2.5 text-gray-900 outline-none shadow-xs"
                     >
                       <option value="XS">XS</option>
                       <option value="S">S</option>
@@ -432,6 +436,23 @@ export const Register: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
+                    Previous Running Experience *
+                  </label>
+                  <select
+                    name="previousExperience"
+                    value={formData.previousExperience || 'First Time Runner (Beginner)'}
+                    onChange={handleInputChange}
+                    className="w-full bg-white border border-gray-300 focus:border-[#FF7A30] px-4 py-2.5 text-gray-900 outline-none shadow-xs text-sm"
+                  >
+                    <option value="First Time Runner (Beginner)">First Time Runner (Beginner)</option>
+                    <option value="5K / 10K Completed Before">5K / 10K Completed Before</option>
+                    <option value="Half Marathon (21K) / 15K Completed">Half Marathon (21K) / 15K Completed</option>
+                    <option value="Full Marathon / Experienced Runner">Full Marathon / Experienced Runner</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
                     Emergency Contact Name & Phone *
                   </label>
                   <input
@@ -441,7 +462,7 @@ export const Register: React.FC = () => {
                     value={formData.emergencyContact}
                     onChange={handleInputChange}
                     placeholder="Parent / Spouse Name (+91 9000000000)"
-                    className="w-full bg-white border border-gray-300 focus:border-[#00A3FF] px-4 py-2.5 text-gray-900 outline-none shadow-xs"
+                    className="w-full bg-white border border-gray-300 focus:border-[#FF7A30] px-4 py-2.5 text-gray-900 outline-none shadow-xs"
                   />
                 </div>
 

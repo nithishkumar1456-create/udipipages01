@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '375px',
+      },
       colors: {
         darkBg: "#FFFFFF",
         darkCard: "#F8FAFC",
@@ -27,9 +30,11 @@ export default {
       },
       backgroundImage: {
         'blue-gradient': 'linear-gradient(135deg, #00A3FF 0%, #0066FF 100%)',
-        'sunset-gradient': 'linear-gradient(135deg, #00A3FF 0%, #0066FF 100%)',
-        'beach-gradient': 'linear-gradient(135deg, #00A3FF 0%, #0066FF 100%)',
+        'sunset-gradient': 'linear-gradient(135deg, #FF7A30 0%, #FFB347 100%)',
+        'orange-gradient': 'linear-gradient(135deg, #FF7A30 0%, #FFB347 100%)',
+        'beach-gradient': 'linear-gradient(135deg, #FF7A30 0%, #FFB347 100%)',
         'blue-glow': 'radial-gradient(circle, rgba(0,163,255,0.15) 0%, rgba(255,255,255,0) 70%)',
+        'orange-glow': 'radial-gradient(circle, rgba(255,122,48,0.2) 0%, rgba(255,255,255,0) 70%)',
       }
     },
   },

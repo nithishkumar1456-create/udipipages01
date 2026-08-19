@@ -99,8 +99,8 @@ export const Hero: React.FC = () => {
       {/* Light Vignette Overlay for Contrast (Reduced opacity so slideshow is clearly visible) */}
       <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-white/15 to-white/25 z-10 pointer-events-none" />
 
-      {/* Ocean Blue Radial Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[radial-gradient(circle,rgba(0,163,255,0.18)_0%,rgba(255,255,255,0)_70%)] pointer-events-none z-10" />
+      {/* Warm Orange Radial Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[radial-gradient(circle,rgba(255,122,48,0.22)_0%,rgba(255,255,255,0)_70%)] pointer-events-none z-10" />
 
       {/* Hero Main Content */}
       <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center w-full pointer-events-auto">
@@ -110,22 +110,22 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-white/95 border border-[#00A3FF]/40 backdrop-blur-md mb-3 sm:mb-4 shadow-md max-w-full"
+          className="inline-flex items-center space-x-2 px-3 sm:px-4 py-1.5 rounded-full bg-white/95 border border-[#FF7A30]/40 backdrop-blur-md mb-3 sm:mb-4 shadow-md max-w-full"
         >
           <img
             src="/images/logo.png"
             alt="Official Logo"
-            className="w-6 h-6 sm:w-7 sm:h-7 object-contain flex-shrink-0"
+            className="w-5 h-5 sm:w-7 sm:h-7 object-contain flex-shrink-0"
           />
-          <span className="text-[10px] sm:text-xs md:text-sm font-extrabold tracking-wider text-[#0A0A0A] uppercase truncate">
+          <span className="text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-extrabold tracking-wider text-[#0A0A0A] uppercase truncate max-w-[260px] xs:max-w-none">
             Official Coastal Marathon & Marine Preservation
           </span>
         </motion.div>
 
         {/* Display Headline */}
-        <h1 className="font-thunder text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-wide text-[#0A0A0A] uppercase text-center font-extrabold drop-shadow-xs max-w-full overflow-hidden">
+        <h1 className="font-thunder text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.98] tracking-wide text-[#0A0A0A] uppercase text-center font-extrabold drop-shadow-xs max-w-full overflow-hidden">
           {titleWords.map((word, wordIdx) => (
-            <span key={wordIdx} className="inline-block mx-1.5 sm:mx-3 md:mx-4">
+            <span key={wordIdx} className="inline-block mx-1 xs:mx-1.5 sm:mx-3 md:mx-4">
               {word.split('').map((char, charIdx) => (
                 <motion.span
                   key={charIdx}
@@ -138,7 +138,7 @@ export const Hero: React.FC = () => {
                   }}
                   className={`inline-block ${
                     word === 'BEACH' || word === '2026'
-                      ? 'text-gradient'
+                      ? 'text-gradient-orange'
                       : 'text-[#0A0A0A]'
                   }`}
                 >
@@ -154,11 +154,11 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-4 max-w-2xl text-sm sm:text-lg text-slate-800 font-semibold tracking-wide leading-relaxed"
+          className="mt-3 sm:mt-4 max-w-2xl text-xs xs:text-sm sm:text-lg text-[#0A0A0A] font-extrabold tracking-wide leading-relaxed px-2"
         >
           Run for the coast. Protect our ocean. Experience Udupi's coastal edge from{' '}
-          <span className="font-bold text-white bg-[#0A0A0A] px-2 py-0.5 shadow-sm">Padukere Ground</span> to{' '}
-          <span className="font-bold text-black bg-white px-2 py-0.5 border border-slate-300 shadow-sm">Kapu Light House</span>.
+          <span className="font-black text-white bg-[#0A0A0A] px-2 py-0.5 shadow-sm inline-block my-0.5">Padukere Ground</span> to{' '}
+          <span className="font-black text-black bg-white px-2 py-0.5 border border-slate-400 shadow-sm inline-block my-0.5">Kapu Light House</span>.
         </motion.p>
 
         {/* Info Meta Pills */}
@@ -166,15 +166,15 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4, delay: 0.7 }}
-          className="mt-5 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm text-slate-900 font-bold"
+          className="mt-4 sm:mt-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 text-xs sm:text-sm text-[#0A0A0A] font-extrabold"
         >
-          <div className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-none bg-white border border-slate-200 shadow-sm">
-            <Calendar className="w-4 h-4 text-[#00A3FF]" />
-            <span>6TH DECEMBER 2026 • 5:30 AM – 10:00 AM</span>
+          <div className="inline-flex items-center justify-center space-x-2 px-4 py-2 bg-white border border-[#FF7A30]/40 shadow-sm">
+            <Calendar className="w-4 h-4 text-[#FF7A30] flex-shrink-0" />
+            <span className="text-[11px] sm:text-xs md:text-sm font-extrabold whitespace-nowrap text-[#0A0A0A]">6TH DECEMBER 2026 • 5:30 AM – 10:00 AM</span>
           </div>
-          <div className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-none bg-white border border-slate-200 shadow-sm">
-            <MapPin className="w-4 h-4 text-[#00A3FF]" />
-            <span>PADUKERE TO KAPU LIGHT HOUSE, UDUPI</span>
+          <div className="inline-flex items-center justify-center space-x-2 px-4 py-2 bg-white border border-[#FF7A30]/40 shadow-sm">
+            <MapPin className="w-4 h-4 text-[#FF7A30] flex-shrink-0" />
+            <span className="text-[11px] sm:text-xs md:text-sm font-extrabold whitespace-nowrap text-[#0A0A0A]">PADUKERE TO KAPU LIGHT HOUSE, UDUPI</span>
           </div>
         </motion.div>
 
@@ -183,11 +183,11 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-6"
+          className="mt-5 sm:mt-6 w-full sm:w-auto"
         >
           <a
             href="#register"
-            className="group relative inline-flex items-center justify-center px-8 py-4 bg-sunset-gradient text-white font-sans text-base sm:text-lg uppercase tracking-[0.15em] font-extrabold shadow-[0_4px_25px_rgba(0,163,255,0.4)] transition-transform hover:scale-105 active:scale-95 border border-white/20"
+            className="group relative inline-flex items-center justify-center w-full sm:w-auto px-6 xs:px-8 py-3.5 sm:py-4 bg-sunset-gradient text-white font-sans text-sm sm:text-lg uppercase tracking-[0.15em] font-extrabold shadow-[0_4px_25px_rgba(255,122,48,0.45)] transition-transform hover:scale-105 active:scale-95 border border-white/20"
           >
             <span className="relative z-10">SECURE YOUR BIB NOW</span>
             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
@@ -198,7 +198,7 @@ export const Hero: React.FC = () => {
       {/* Manual Controls: Previous Button */}
       <button
         onClick={handlePrev}
-        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/80 hover:bg-white border border-slate-200 text-[#0A0A0A] hover:text-[#00A3FF] items-center justify-center transition-all shadow-md backdrop-blur-sm"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/80 hover:bg-white border border-slate-200 text-[#0A0A0A] hover:text-[#FF7A30] items-center justify-center transition-all shadow-md backdrop-blur-sm"
         aria-label="Previous Slide"
       >
         <ChevronLeft className="w-5 h-5" />
@@ -207,7 +207,7 @@ export const Hero: React.FC = () => {
       {/* Manual Controls: Next Button */}
       <button
         onClick={handleNext}
-        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/80 hover:bg-white border border-slate-200 text-[#0A0A0A] hover:text-[#00A3FF] items-center justify-center transition-all shadow-md backdrop-blur-sm"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 bg-white/80 hover:bg-white border border-slate-200 text-[#0A0A0A] hover:text-[#FF7A30] items-center justify-center transition-all shadow-md backdrop-blur-sm"
         aria-label="Next Slide"
       >
         <ChevronRight className="w-5 h-5" />
@@ -221,7 +221,7 @@ export const Hero: React.FC = () => {
             onClick={() => setCurrentIndex(idx)}
             className={`transition-all duration-300 ${
               currentIndex === idx
-                ? 'w-5 h-1.5 bg-[#00A3FF]'
+                ? 'w-5 h-1.5 bg-[#FF7A30]'
                 : 'w-1.5 h-1.5 bg-slate-400 hover:bg-slate-600'
             }`}
             aria-label={`Go to slide ${idx + 1}`}
@@ -232,11 +232,11 @@ export const Hero: React.FC = () => {
       {/* Down Scroll Anchor */}
       <a
         href="#about"
-        className="hidden lg:flex absolute bottom-4 right-6 z-20 text-slate-700 hover:text-[#00A3FF] transition-colors flex-col items-center space-y-1"
+        className="hidden lg:flex absolute bottom-4 right-6 z-20 text-slate-700 hover:text-[#FF7A30] transition-colors flex-col items-center space-y-1"
         aria-label="Scroll to About section"
       >
         <span className="text-[9px] tracking-widest uppercase font-bold">DISCOVER MORE</span>
-        <ChevronDown className="w-4 h-4 animate-bounce text-[#00A3FF]" />
+        <ChevronDown className="w-4 h-4 animate-bounce text-[#FF7A30]" />
       </a>
     </section>
   );
